@@ -1,0 +1,27 @@
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Dataset (quá lớn, không push lên GitHub)
+data/asl_alphabet_train/
+data/asl_alphabet_test/
+data/*.zip
+
+# Model files (quá lớn)
+models/*.keras
+models/*.h5
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
