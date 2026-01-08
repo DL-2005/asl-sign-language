@@ -6,3 +6,4 @@ scikit-learn
 seaborn
 kaggle
 pillow
+mediapipe

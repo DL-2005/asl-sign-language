@@ -148,7 +148,7 @@ callbacks = [
         verbose=1
     ),
     ModelCheckpoint(
-        './models/best_model.keras',
+        './models/best_model.h5',
         monitor='val_accuracy',
         save_best_only=True,
         verbose=1
@@ -181,8 +181,8 @@ print("BUOC 6: Luu Model va Ve Bieu Do")
 print("="*50)
 
 # Lưu model cuối cùng
-model.save('./models/asl_model_final.keras')
-print("Da luu model: ./models/asl_model_final.keras")
+model.save('./models/asl_model_final.h5')
+print("Da luu model: ./models/asl_model_final.h5")
 
 # Vẽ biểu đồ training
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -219,7 +219,7 @@ print("="*50)
 print(f"Final Training Accuracy: {history.history['accuracy'][-1]:.4f}")
 print(f"Final Validation Accuracy: {history.history['val_accuracy'][-1]:.4f}")
 print("\nCac file da luu:")
-print("  - ./models/best_model.keras")
-print("  - ./models/asl_model_final.keras")
+print("  - ./models/best_model.h5")
+print("  - ./models/asl_model_final.h5")
 print("  - ./models/class_names.json")
 print("  - ./models/training_history.png")

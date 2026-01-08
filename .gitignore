@@ -1,22 +1,25 @@
+notepad .gitignore
+```
+
+Xóa hết và paste nội dung mới:
+```
 # Virtual environment
 venv/
-env/
-.venv/
+
+# Dataset (quá lớn)
+data/asl_alphabet_train/
+data/asl_alphabet_test/
+
+# Model files (quá lớn)
+models/*.h5
+models/*.keras
+models/hand_landmarker.task
 
 # Python cache
 __pycache__/
 *.py[cod]
 *$py.class
-*.pyc
-
-# Dataset (quá lớn, không push lên GitHub)
-data/asl_alphabet_train/
-data/asl_alphabet_test/
-data/*.zip
-
-# Model files (quá lớn)
-models/*.keras
-models/*.h5
+.Python
 
 # IDE
 .vscode/
@@ -25,3 +28,6 @@ models/*.h5
 # OS
 .DS_Store
 Thumbs.db
+
+# Logs
+*.log
