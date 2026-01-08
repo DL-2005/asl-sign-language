@@ -9,6 +9,14 @@ venv/
 # Dataset (quá lớn)
 data/asl_alphabet_train/
 data/asl_alphabet_test/
+data/sign_mnist_train/
+data/sign_mnist_test/
+
+# Zip files
+*.zip
+
+# CSV files lớn
+data/*.csv
 
 # Model files (quá lớn)
 models/*.h5
@@ -31,6 +39,3 @@ Thumbs.db
 
 # Logs
 *.log
-
-# Zip files
-*.zip
