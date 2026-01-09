@@ -52,15 +52,33 @@ def predict_image(image):
     confidence = np.max(prediction) * 100
     return predicted_class, confidence
 
-def get_hand_bbox(hand_landmarks, frame_width, frame_height, padding=30):
-    """Lấy bounding box từ hand landmarks"""
+def get_hand_bbox(hand_landmarks, frame_width, frame_height, padding_ratio=0.4):
+    """Lấy bounding box từ hand landmarks với padding theo tỷ lệ"""
     x_coords = [lm.x for lm in hand_landmarks.landmark]
     y_coords = [lm.y for lm in hand_landmarks.landmark]
     
-    x_min = int(min(x_coords) * frame_width) - padding
-    x_max = int(max(x_coords) * frame_width) + padding
-    y_min = int(min(y_coords) * frame_height) - padding
-    y_max = int(max(y_coords) * frame_height) + padding
+    # Tính kích thước tay
+    hand_width = (max(x_coords) - min(x_coords)) * frame_width
+    hand_height = (max(y_coords) - min(y_coords)) * frame_height
+    
+    # Padding theo tỷ lệ kích thước tay
+    padding_x = int(hand_width * padding_ratio)
+    padding_y = int(hand_height * padding_ratio)
+    
+    x_min = int(min(x_coords) * frame_width) - padding_x
+    x_max = int(max(x_coords) * frame_width) + padding_x
+    y_min = int(min(y_coords) * frame_height) - padding_y
+    y_max = int(max(y_coords) * frame_height) + padding_y
+    
+    # Đảm bảo bbox là hình vuông (giống dataset)
+    size = max(x_max - x_min, y_max - y_min)
+    center_x = (x_min + x_max) // 2
+    center_y = (y_min + y_max) // 2
+    
+    x_min = center_x - size // 2
+    x_max = center_x + size // 2
+    y_min = center_y - size // 2
+    y_max = center_y + size // 2
     
     # Clamp to frame boundaries
     x_min = max(0, x_min)
@@ -69,6 +87,7 @@ def get_hand_bbox(hand_landmarks, frame_width, frame_height, padding=30):
     y_max = min(frame_height, y_max)
     
     return x_min, y_min, x_max, y_max
+
 
 def test_with_sample_images():
     """Test với ảnh mẫu từ dataset"""
