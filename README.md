@@ -21,9 +21,10 @@ Project sử dụng 3 dataset:
 | Synthetic ASL Alphabet | 150,000+ | [Kaggle](https://www.kaggle.com/datasets/lexset/synthetic-asl-alphabet) |
 
 **Tổng cộng: ~260,000+ ảnh**
-Sau quá trình tiền xử lý, lọc dữ liệu và chuẩn hóa nhãn,
-một tập con gồm 166,210 ảnh được sử dụng trong quá trình
-huấn luyện và đánh giá mô hình, bao gồm:
+
+- Sau quá trình tiền xử lý, lọc dữ liệu và chuẩn hóa nhãn,
+  một tập con gồm 166,210 ảnh được sử dụng trong quá trình
+  huấn luyện và đánh giá mô hình, bao gồm:
 
 - 132,978 ảnh cho training
 - 33,232 ảnh cho validation
