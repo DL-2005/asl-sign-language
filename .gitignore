@@ -11,12 +11,19 @@ data/asl_alphabet_train/
 data/asl_alphabet_test/
 data/sign_mnist_train/
 data/sign_mnist_test/
+data/Test_Alphabet/
+data/Train_Alphabet/
 
 # Zip files
 *.zip
 
 # CSV files lớn
 data/*.csv
+
+# Ảnh trong data
+data/*.jpg
+data/*.png
+data/*.PNG
 
 # Model files (quá lớn)
 models/*.h5
