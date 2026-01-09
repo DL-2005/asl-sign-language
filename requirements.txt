@@ -1,9 +1,10 @@
-tensorflow
+tensorflow==2.13.0
+mediapipe==0.10.9
 opencv-python
 matplotlib
-numpy
+numpy==1.24.3
 scikit-learn
 seaborn
 kaggle
 pillow
-mediapipe
+pandas

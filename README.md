@@ -51,6 +51,13 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+**Lưu ý quan trọng:** Nếu gặp lỗi `AttributeError: module 'mediapipe' has no attribute 'solutions'`, chạy lệnh sau:
+
+```bash
+pip uninstall tensorflow mediapipe -y
+pip install tensorflow==2.13.0 mediapipe==0.10.9
+```
+
 ### 4. Tải dataset
 
 ```bash
