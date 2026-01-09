@@ -1,47 +1,141 @@
 # ASL Sign Language Recognition
 
-Nhan dien ngon ngu ky hieu My (ASL) bang Machine Learning voi TensorFlow/Keras.
+Nhận diện ngôn ngữ ký hiệu Mỹ (ASL) bằng Machine Learning với TensorFlow/Keras và MediaPipe.
 
-## Ket qua
+## 🎯 Kết quả
 
-- Training Accuracy: 98.89%
-- Validation Accuracy: 88.90%
+- **Training Accuracy:** 97.06%
+- **Validation Accuracy:** 73.27%
+- **Best Validation Accuracy:** 73.27% (Epoch 14)
+- **Classes:** 29 (A-Z + space, del, nothing)
+- **Total Training Images:** ~260,000+
 
-## Cai dat
+## 📦 Dataset
+
+Project sử dụng 3 dataset:
+
+| Dataset                | Số ảnh   | Nguồn                                                                   |
+| ---------------------- | -------- | ----------------------------------------------------------------------- |
+| ASL Alphabet           | 87,000   | [Kaggle](https://www.kaggle.com/datasets/grassknoted/asl-alphabet)      |
+| Sign Language MNIST    | 27,455   | [Kaggle](https://www.kaggle.com/datasets/datamunge/sign-language-mnist) |
+| Synthetic ASL Alphabet | 150,000+ | [Kaggle](https://www.kaggle.com/datasets/lexset/synthetic-asl-alphabet) |
+
+**Tổng cộng: ~260,000+ ảnh**
+
+## 🛠️ Cài đặt
+
+### 1. Clone repository
 
 ```bash
 git clone https://github.com/DL-2005/asl-sign-language.git
 cd asl-sign-language
+```
+
+### 2. Tạo virtual environment (Python 3.11)
+
+```bash
 python -m venv venv
 venv\Scripts\activate
+```
+
+### 3. Cài đặt thư viện
+
+```bash
 pip install -r requirements.txt
 ```
 
-## Tai dataset
+### 4. Tải dataset
 
 ```bash
 cd data
 kaggle datasets download -d grassknoted/asl-alphabet
+kaggle datasets download -d datamunge/sign-language-mnist
+kaggle datasets download -d lexset/synthetic-asl-alphabet
 ```
 
-## Su dung
+### 5. Giải nén dataset
 
 ```bash
-python src/train.py      # Training
-python src/evaluate.py   # Danh gia
-python src/predict.py    # Nhan dien real-time
+tar -xf asl-alphabet.zip
+tar -xf sign-language-mnist.zip
+tar -xf synthetic-asl-alphabet.zip
 ```
 
-## Dataset
+### 6. Gộp dataset
 
-- Nguon: ASL Alphabet Dataset - Kaggle
-- So luong: 87,000 anh
-- Classes: 29 (A-Z + space, del, nothing)
+```bash
+cd ..
+python src/merge_all_datasets.py
+```
 
-## Cong nghe
+## 🚀 Sử dụng
 
-- Python
-- TensorFlow / Keras
+### Training model
+
+```bash
+python src/train.py
+```
+
+### Đánh giá model
+
+```bash
+python src/evaluate.py
+```
+
+### Nhận diện real-time với webcam
+
+```bash
+python src/predict.py
+```
+
+Chọn option 2 để dùng MediaPipe Hand Landmarks.
+
+## 📁 Cấu trúc thư mục
+
+```
+asl-sign-language/
+├── data/
+│   ├── asl_alphabet_train/    # Dataset chính
+│   ├── Train_Alphabet/        # Synthetic ASL
+│   └── sign_mnist_train.csv   # MNIST CSV
+├── models/
+│   ├── best_model.h5          # Model tốt nhất
+│   ├── class_names.json       # Danh sách classes
+│   └── training_history.png   # Biểu đồ training
+├── src/
+│   ├── train.py               # Training model
+│   ├── evaluate.py            # Đánh giá model
+│   ├── predict.py             # Nhận diện real-time
+│   ├── merge_all_datasets.py  # Gộp dataset
+│   └── convert_mnist.py       # Convert MNIST
+├── requirements.txt
+└── README.md
+```
+
+## 🔧 Công nghệ
+
+- Python 3.11
+- TensorFlow 2.13
+- MediaPipe 0.10.9
 - OpenCV
 - NumPy
 - Matplotlib
+
+## 📊 Model Architecture
+
+```
+CNN với 4 Convolutional Blocks:
+- Block 1: Conv2D(32) → BatchNorm → MaxPool → Dropout
+- Block 2: Conv2D(64) → BatchNorm → MaxPool → Dropout
+- Block 3: Conv2D(128) → BatchNorm → MaxPool → Dropout
+- Block 4: Conv2D(256) → BatchNorm → Dropout
+- Fully Connected: Dense(512) → Dense(29)
+```
+
+## 👤 Tác giả
+
+- **DL-2005** - [GitHub](https://github.com/DL-2005)
+
+## 📄 License
+
+MIT License
