@@ -149,6 +149,7 @@ CNN với 4 Convolutional Blocks:
 ## 👤 Tác giả
 
 - **DL-2005** - [GitHub](https://github.com/DL-2005)
+- **AlphaJCut** - [GitHub](https://github.com/AlphaJCut)
 
 ## 📄 License
 
